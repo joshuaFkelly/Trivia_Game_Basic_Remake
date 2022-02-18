@@ -1,10 +1,7 @@
 const gameSection = document.querySelector('#game');
 const mainSection = document.querySelector('#main');
-// const gameResults = document.querySelector('#gameResults');
-// const timer = document.querySelector('#timer');
 const startBtn = document.querySelector('#startBtn');
-// let intervalID;
-// let time = 3;
+// const gameResults = document.querySelector('#gameResults');
 // let correctScore = 0;
 // let incorrectScore = 0;
 // let unansweredScore = 0;
@@ -42,17 +39,6 @@ const startBtn = document.querySelector('#startBtn');
 //     correct: 'd',
 //   },
 // ];
-
-// const startGame = () => {
-//   displayGame();
-//   intervalID = setInterval(timer, 1000);
-//   setTimeout(() => {
-//     displayGameResults();
-//     clearInterval(intervalID);
-//   }, 3000);
-// };
-
-// startBtn.addEventListener('click', startGame);
 
 // const displayGame = () => {
 //   let game = '';
@@ -94,19 +80,17 @@ const startBtn = document.querySelector('#startBtn');
 // Function to execute when timer goes off
 let updatedTime;
 let gameDisplay;
+let time = 3;
 
-function hello(name) {
-  console.log(`Hello ${name}`);
-}
-// clear timeout when player clicks end game
+// clear interval/timeout
 const stopGame = () => {
   clearInterval(updatedTime);
   console.log('interval cleared');
   clearTimeout(gameDisplay);
   console.log('timeoutcleared');
 };
-// ---------- setInterval ----------
-let time = 3;
+
+// update timer
 const updateTime = () => {
   console.log(time);
   if (time > 0) {
@@ -116,15 +100,18 @@ const updateTime = () => {
     stopGame();
   }
 };
+// create timer element
 const createTimer = () => {
   const timerElement = document.createElement('h2');
   timerElement.id = 'timer';
   timerElement.textContent = `Time Remaining: ${time}`;
   return mainSection.appendChild(timerElement);
 };
+// set interval/timeout
 const startGame = () => {
   createTimer();
   updatedTime = setInterval(updateTime, 1000);
   gameDisplay = setTimeout(stopGame, 3000, 'World');
 };
+// event listener
 startBtn.addEventListener('click', startGame);
