@@ -92,6 +92,9 @@ const startBtn = document.querySelector('#startBtn');
 // };
 
 // Function to execute when timer goes off
+let updatedTime;
+let gameDisplay;
+
 function hello(name) {
   console.log(`Hello ${name}`);
 }
@@ -104,28 +107,24 @@ const stopGame = () => {
 };
 // ---------- setInterval ----------
 let time = 3;
-
-// const createTimer = () => {
-
-// };
 const updateTime = () => {
   console.log(time);
-  if (time === 0) {
-    stopGame();
-  } else {
+  if (time > 0) {
     time--;
     document.querySelector('#timer').textContent = `Time Remaining: ${time}`;
+  } else {
+    stopGame();
   }
 };
-
+const createTimer = () => {
+  const timerElement = document.createElement('h2');
+  timerElement.id = 'timer';
+  timerElement.textContent = `Time Remaining: ${time}`;
+  return mainSection.appendChild(timerElement);
+};
 const startGame = () => {
-  // const timerElement = document.createElement('h2');
-  // timerElement.id = 'timer';
-  // timerElement.textContent = `Time Remaining: ${time}`;
-  // return mainSection.appendChild(timerElement);
+  createTimer();
   updatedTime = setInterval(updateTime, 1000);
-  gameDisplay = setTimeout(hello, 3000, 'World');
+  gameDisplay = setTimeout(stopGame, 3000, 'World');
 };
 startBtn.addEventListener('click', startGame);
-let updatedTime;
-let gameDisplay;
