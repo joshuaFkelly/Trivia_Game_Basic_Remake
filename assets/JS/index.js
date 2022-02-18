@@ -4,7 +4,6 @@ const startBtn = document.querySelector('#startBtn');
 const gameTime = document.querySelector('#timer');
 let intervalID;
 let time = 3;
-
 let correctScore = 0;
 let incorrectScore = 0;
 let unansweredScore = 0;
@@ -51,8 +50,6 @@ const startGame = () => {
   }, 3000);
 };
 startBtn.addEventListener('click', startGame);
-
-// startBtn();
 
 const displayGame = () => {
   let game = '';
