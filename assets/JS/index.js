@@ -41,6 +41,7 @@ const triviaQuestions = [
     correct: 'd',
   },
 ];
+
 const startGame = () => {
   displayGame();
   intervalID = setInterval(timer, 1000);
@@ -49,6 +50,7 @@ const startGame = () => {
     clearInterval(intervalID);
   }, 3000);
 };
+
 startBtn.addEventListener('click', startGame);
 
 const displayGame = () => {
