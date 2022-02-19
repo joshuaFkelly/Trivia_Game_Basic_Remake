@@ -45,8 +45,7 @@ const triviaQuestions = [
     ],
   },
 ];
-const calculateScore = (e) => {
-  e.preventDefault();
+const calculateScore = () => {
   const allAnswers = document.querySelectorAll(`input[type=radio]`);
 
   allAnswers.forEach((input) => {
@@ -123,4 +122,5 @@ const displayGame = () => {
   submitBtn.addEventListener('click', calculateScore);
   mainSection.appendChild(submitBtn);
 };
+
 displayGame();
