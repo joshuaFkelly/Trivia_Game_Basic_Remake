@@ -15,7 +15,7 @@ const triviaQuestions = [
     b: 'Fear of Cats',
     c: 'Fear of Heights',
     d: 'Fear of Dentists',
-    correct: 'a',
+    correct: 'Fear of Dogs',
   },
   {
     question: 'Who named the Pacific Ocean?',
@@ -23,7 +23,7 @@ const triviaQuestions = [
     b: 'Ferdinand Magellan',
     c: 'Franz Ferdinand',
     d: 'Ferdinand Marcos',
-    correct: 'b',
+    correct: 'Ferdinand Magellan',
   },
   {
     question: 'What is the biggest tech company in South Korea?',
@@ -31,7 +31,7 @@ const triviaQuestions = [
     b: 'Huawei',
     c: 'Mitsibushi',
     d: 'Samsung',
-    correct: 'd',
+    correct: 'Samsung',
   },
 ];
 
@@ -44,24 +44,24 @@ const displayGame = () => {
   let game = '';
   triviaQuestions.map((question) => {
     game += `
-    <h3>${question.question}</h3>
-
-    <input type="radio" id="${question.a}" name="${question.a}" value="${question.correct}">
-    <label for="${question.a}">${question.a}</label>
-
-    <input type="radio" id="${question.b}" name="${question.b}" value="${question.correct}">
-    <label for="${question.b}">${question.b}</label>
-
-    <input type="radio" id="${question.c}" name="${question.c}" value="${question.correct}">
-    <label for="${question.c}">${question.c}</label>
-
-    <input type="radio" id="${question.d}" name="${question.d}" value="${question.correct}">
-    <label for="${question.d}">${question.d}</label>
+<div>
+            <h3>${question.question}</h3>
+    <input type= "checkbox" id= "${question.a}" name= "option" value= "${question.a}">
+    <label for= "${question.a}">${question.a}</label>
+    <input type= "checkbox" id="${question.b}" name= "option" value= "${question.b}">
+    <label for= "${question.b}">${question.b}</label>
+    <input type= "checkbox" id="${question.c}" name= "option" value= "${question.c}">
+    <label for= "${question.c}">${question.c}</label>
+    <input type= "checkbox" id= "${question.d}" name= "option" value= "${question.d}">
+    <label for= "${question.d}">${question.d}</label>
+</div>
+    
     `;
   });
   gameContent.innerHTML = game;
-
-  return mainSection.appendChild(gameContent);
+  // Create Submit Button
+  mainSection.appendChild(gameContent);
+  createSubmitBtn();
 };
 
 // ----- Game Results Section -----
@@ -88,7 +88,7 @@ const displayGameResults = () => {
 // Timer Variables
 let updatedTime;
 let gameDisplay;
-let time = 3;
+let time = 60;
 
 // create timer element
 const createTimer = () => {
@@ -99,16 +99,15 @@ const createTimer = () => {
 };
 // set interval/timeout
 const startTimer = () => {
-  if (time != 3) {
-    time = 3;
+  if (time != 60) {
+    time = 60;
   }
   createTimer();
   updatedTime = setInterval(updateTime, 1000);
-  gameDisplay = setTimeout(stopGame, 3000, 'World');
+  gameDisplay = setTimeout(stopGame, 1000 * 60);
 };
 // update timer
 const updateTime = () => {
-  console.log(time);
   if (time > 0) {
     time--;
     document.querySelector('#timer').textContent = `Time Remaining: ${time}`;
@@ -119,9 +118,7 @@ const updateTime = () => {
 // clear interval/timeout
 const stopGame = () => {
   clearInterval(updatedTime);
-  console.log('interval cleared');
   clearTimeout(gameDisplay);
-  console.log('timeoutcleared');
   displayGameResults();
   document.querySelector('#restart').addEventListener('click', restartGame);
   document.querySelector('#quit').addEventListener('click', quitGame);
@@ -175,3 +172,23 @@ const startBtn = () => {
 
 // Must load Start Button when document loads
 document.onload = startBtn();
+
+const calculateScore = () => {
+  const checkBoxButtons = document.querySelectorAll('input[name="option"]');
+  console.log(checkBoxButtons);
+  checkBoxButtons.forEach((btn) => {
+    // console.log(btn);
+    if (btn.checked) {
+      console.log(btn.value);
+    }
+  });
+  stopGame();
+};
+
+const createSubmitBtn = () => {
+  const submitBtn = document.createElement('button');
+  submitBtn.id = 'submit';
+  submitBtn.textContent = 'SUBMIT';
+  submitBtn.addEventListener('click', calculateScore);
+  return document.querySelector('#game').appendChild(submitBtn);
+};
