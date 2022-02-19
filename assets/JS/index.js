@@ -125,9 +125,9 @@ const stopGame = () => {
 };
 
 // ---------------- Game Functionality ----------------
-let correctScore = 0;
-let incorrectScore = 0;
-let unansweredScore = 0;
+// let correctScore = 0;
+// let incorrectScore = 0;
+// let unansweredScore = 0;
 // Starts Game
 const startGame = () => {
   // Checks for existing start button
