@@ -1,7 +1,5 @@
+// --------------- Global Variables  ------------------
 const mainSection = document.querySelector('#main');
-let correctScore = 0;
-let incorrectScore = 0;
-let unansweredScore = 0;
 const triviaQuestions = [
   {
     question: 'Which geometric shape is used for stop signs?',
@@ -37,6 +35,8 @@ const triviaQuestions = [
   },
 ];
 
+// ----- Game Section -----
+
 const displayGame = () => {
   const gameContent = document.createElement('div');
   gameContent.id = 'game';
@@ -64,6 +64,8 @@ const displayGame = () => {
   return mainSection.appendChild(gameContent);
 };
 
+// ----- Game Results Section -----
+
 const displayGameResults = () => {
   document.querySelector('#game').remove();
   document.querySelector('#timer').remove();
@@ -81,34 +83,13 @@ const displayGameResults = () => {
   return mainSection.appendChild(gameResults);
 };
 
-// --------------- TIMER -----------------------
+// ------------------ TIMER -----------------------
 
-// Function to execute when timer goes off
+// Timer Variables
 let updatedTime;
 let gameDisplay;
 let time = 3;
 
-// clear interval/timeout
-const stopGame = () => {
-  clearInterval(updatedTime);
-  console.log('interval cleared');
-  clearTimeout(gameDisplay);
-  console.log('timeoutcleared');
-  displayGameResults();
-  document.querySelector('#restart').addEventListener('click', restartGame);
-  document.querySelector('#quit').addEventListener('click', quitGame);
-};
-
-// update timer
-const updateTime = () => {
-  console.log(time);
-  if (time > 0) {
-    time--;
-    document.querySelector('#timer').textContent = `Time Remaining: ${time}`;
-  } else {
-    stopGame();
-  }
-};
 // create timer element
 const createTimer = () => {
   const timerElement = document.createElement('h2');
@@ -125,35 +106,72 @@ const startTimer = () => {
   updatedTime = setInterval(updateTime, 1000);
   gameDisplay = setTimeout(stopGame, 3000, 'World');
 };
+// update timer
+const updateTime = () => {
+  console.log(time);
+  if (time > 0) {
+    time--;
+    document.querySelector('#timer').textContent = `Time Remaining: ${time}`;
+  } else {
+    stopGame();
+  }
+};
+// clear interval/timeout
+const stopGame = () => {
+  clearInterval(updatedTime);
+  console.log('interval cleared');
+  clearTimeout(gameDisplay);
+  console.log('timeoutcleared');
+  displayGameResults();
+  document.querySelector('#restart').addEventListener('click', restartGame);
+  document.querySelector('#quit').addEventListener('click', quitGame);
+};
 
-// ----------------------------------------------
-
+// ---------------- Game Functionality ----------------
+let correctScore = 0;
+let incorrectScore = 0;
+let unansweredScore = 0;
+// Starts Game
 const startGame = () => {
+  // Checks for existing start button
   if (document.querySelector('#start')) {
     document.querySelector('#start').remove();
   }
+  // Start Timer
   startTimer();
+  // Display Game Section
   displayGame();
 };
 
+// Restarts Game
 const restartGame = () => {
+  // Removes Game Results Section
   document.querySelector('#gameResults').remove();
+  // Starts new game
   startGame();
 };
+
+// Quits Game
 const quitGame = () => {
+  // Remove Game Results Section
   document.querySelector('#gameResults').remove();
+  // Add Start Button to Main Section
+  startBtn();
+};
+
+// Creates Start Button
+const startBtn = () => {
+  // Create new Start Button
   const startBtn = document.createElement('button');
+  // Give ID of "start"
   startBtn.id = 'start';
+  // Give text of "START"
   startBtn.textContent = 'START';
+  // Add event listener to listen for startGame()
   startBtn.addEventListener('click', startGame);
+  // Returns HTML
   return mainSection.appendChild(startBtn);
 };
 
-const startBtn = () => {
-  const startBtn = document.createElement('button');
-  startBtn.id = 'start';
-  startBtn.textContent = 'START';
-  startBtn.addEventListener('click', startGame);
-  return mainSection.appendChild(startBtn);
-};
+// Must load Start Button when document loads
 document.onload = startBtn();
