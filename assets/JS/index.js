@@ -38,7 +38,6 @@ const triviaQuestions = [
 ];
 
 const displayGame = () => {
-  document.querySelector('#start').remove();
   const gameContent = document.createElement('div');
   gameContent.id = 'game';
 
@@ -81,6 +80,8 @@ const displayGameResults = () => {
   gameResults.innerHTML = gameStats;
   return mainSection.appendChild(gameResults);
 };
+
+// --------------- TIMER -----------------------
 
 // Function to execute when timer goes off
 let updatedTime;
@@ -125,12 +126,16 @@ const startTimer = () => {
   gameDisplay = setTimeout(stopGame, 3000, 'World');
 };
 
+// ----------------------------------------------
+
 const startGame = () => {
+  if (document.querySelector('#start')) {
+    document.querySelector('#start').remove();
+  }
   startTimer();
   displayGame();
 };
 
-// event listener
 const restartGame = () => {
   document.querySelector('#gameResults').remove();
   startGame();
@@ -141,7 +146,7 @@ const quitGame = () => {
   startBtn.id = 'start';
   startBtn.textContent = 'START';
   startBtn.addEventListener('click', startGame);
-  mainSection.appendChild(startBtn);
+  return mainSection.appendChild(startBtn);
 };
 
 const startBtn = () => {
