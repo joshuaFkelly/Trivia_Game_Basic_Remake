@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="/assets/css/style.css"> -->
+    <script src="script.js" defer></script>
+    <title>Basic Trivia Game</title>
+</head>
+
+<body>
+    <div class="center-screen">
+        <h1>Totally Trivial Trivia</h1>
+        <form id="form">
+            <h2 id="timer">60 Seconds Remaining</h2>
+
+            <!-- Question One -->
+            <div class="row">
+                <h3 id="question">Which geometric shape is used for stop signs?</h3>
+                <input type="radio" id="a" class="option" name="option" value="incorrect">
+                <label for="a">Square</label>
+                <input type="radio" id="b" class="option" name="option" value="incorrect">
+                <label for="b">Triangle</label>
+                <input type="radio" id="correct" class="option" name="option" value="correct">
+                <label for="correct">Octagon</label>
+                <input type="radio" id="d" class="option" name="option" value="incorrect">
+                <label for="d">Hexagon</label>
+            </div>
+
+            <!-- Question Two -->
+            <div class="row">
+                <h3>What is cynophobia?</h3>
+                <input type="radio" id="correct" class="option" name="fear" value="correct">
+                <label for="correct">Fear of Dogs</label>
+                <input type="radio" id="cats" class="option" name="fear" value="incorrect">
+                <label for="cats">Fear of Cats</label>
+                <input type="radio" id="height" class="option" name="fear" value="incorrect">
+                <label for="height">Fear of Heights</label>
+                <input type="radio" id="dentist" class="option" name="fear" value="incorrect">
+                <label for="dentist">Fear of Dentists</label>
+            </div>
+
+            <!-- Question Three -->
+            <div class="row">
+                <h3>Who named the Pacific Ocean?</h3>
+                <input type="radio" id="ferdinandTheBull" class="option" name="person" value="incorrect">
+                <label for="ferdinandTheBull">Ferdinand the Bull</label>
+                <input type="radio" id="ferdinandMagellan" class="option" name="person" value="correct">
+                <label for="ferdinandMagellan">Ferdinand Magellan</label>
+                <input type="radio" id="franzFerdinand" class="option" name="person" value="incorrect">
+                <label for="Franz Ferdinand">Franz Ferdinand</label>
+                <input type="radio" id="ferdinandMarcos" class="option" name="person" value="incorrect">
+                <label for="ferdinandMarcos">Ferdinand Marcos</label>
+            </div>
+
+            <!-- Question Four -->
+            <div class="row">
+                <h3>What is the biggest tech company in South Korea?</h3>
+                <input type="radio" id="lenovo" class="option" name="company" value="incorrect">
+                <label for="lenovo">Lenovo</label>
+                <input type="radio" id="huawei" class="option" name="company" value="incorrect">
+                <label for="huawei">Huawei</label>
+                <input type="radio" id="mitsibushi" class="option" name="company" value="incorrect">
+                <label for="mitsibushi">Mitsibushi</label>
+                <input type="radio" id="correct" class="option" name="company" value="correct">
+                <label for="correct">Samsung</label>
+            </div>
+
+
+            <!-- Submit Button -->
+            <input id="submit" type="submit" value="Finish Quiz">
+
+
+        </form>
+        <!-- <button id="startBtn">START</button> -->
+        <!-- <div id="gameStats">
+            <h4 id="correctDiv"> Correct: </h4>
+            <h4 id="incorrectDiv">Incorrect: </h4>
+            <button id="restartBtn">RESTART</button>
+        </div> -->
+</body>
+
+</html>
