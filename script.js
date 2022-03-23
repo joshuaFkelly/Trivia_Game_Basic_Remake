@@ -185,8 +185,6 @@ class Question extends Game {
     `);
   }
 }
-// Declare a new game
-const game = new Game();
 
 function submitQuiz(e) {
   // prevent default so i can manipulate data
@@ -223,15 +221,20 @@ function createQuiz() {
   const submitBtn = document.createElement("button");
   submitBtn.innerText = "Submit Quiz";
   submitBtn.id = "submit";
+  submitBtn.addEventListener("click", submitQuiz);
   document.getElementById("quiz").appendChild(submitBtn);
 
   // remove button
   document.getElementById("start").remove();
 }
 
-function startGame(e) {
-  if (game.time != 3) {
-    game.time = 3;
+function startGame() {
+  if (game.time != 10) {
+    game.time = 10;
+  }
+  if (game.correctScore || game.incorrectScore != 0) {
+    game.correctScore = 0;
+    game.incorrectScore = 0;
   }
   // first create the quiz
   createQuiz();
@@ -239,6 +242,9 @@ function startGame(e) {
   // start timer
   game.startTimer();
 }
+
+// Declare a new Game automatically.. i guess.
+const game = new Game();
 
 game.renderGame();
 
