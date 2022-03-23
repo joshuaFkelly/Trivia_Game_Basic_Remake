@@ -45,6 +45,7 @@ const triviaQuestions = [
     ],
   },
 ];
+
 const mainEl = document.getElementById("main");
 
 class Game {
