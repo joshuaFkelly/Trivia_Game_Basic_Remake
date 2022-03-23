@@ -53,7 +53,9 @@ class Game {
     this.correctScore = 0;
     this.incorrectScore = 0;
     this.unansweredScore = 0;
-    this.time = 11000;
+    this.time = 3;
+    this.intervalID;
+    this.timeoutID;
   }
 
   incrementCorrectScore() {
@@ -66,6 +68,10 @@ class Game {
     return this.unansweredScore++;
   }
 
+  resetTime() {
+    this.time = 3;
+  }
+
   startTimer() {
     document.getElementById("timer").innerText = this.time;
     this.intervalID = setInterval(() => {
@@ -74,8 +80,18 @@ class Game {
     }, 1000);
 
     this.timeoutID = setTimeout(() => {
-      mainEl.innerHTML = this.renderGameOver();
-    }, 1000 * 60);
+      // Stop the timer
+      this.stopTimer();
+
+      // evaluate score
+      this.evalScore();
+
+      // remove quiz
+      document.getElementById("quiz").remove();
+
+      // Show Game Over Screen
+      this.renderGameOver();
+    }, 1000 * this.time);
   }
 
   stopTimer() {
@@ -83,7 +99,7 @@ class Game {
     clearTimeout(this.timeoutID);
   }
   renderGame() {
-    return (mainEl.innerHTML = `
+    mainEl.innerHTML = `
     <form>
         <div id="game">
          <h1> Trivia Game! </h1>
@@ -98,7 +114,8 @@ class Game {
     </form>
     
     <button id="start"> Start </button>
-    `);
+    `;
+    document.querySelector("#start").addEventListener("click", startGame);
   }
   renderGameOver() {
     mainEl.innerHTML = `
@@ -107,9 +124,13 @@ class Game {
       <h3> Correct Answers: <span id="correct">${this.correctScore}</span> </h3>
       <h3> Incorrect Answers: <span id="incorrect">${this.incorrectScore}</span> </h3>
       <h3> Unanswered Answers: <span id="unanswered">${this.unansweredScore}</span> </h3>
-      <button id = "restart"> Restart </button> <button id = "quit"> Quit </button>
+      <button id = "quit"> Quit </button> 
     </div>
     `;
+    document.getElementById("quit").addEventListener("click", () => {
+      new Game();
+      this.renderGame();
+    });
   }
 
   evalScore() {
@@ -198,18 +219,20 @@ function createQuiz() {
     quiz.renderQuiz();
   });
 
-  // create submit button
+  // create submit button, append to quiz element
   const submitBtn = document.createElement("button");
-  submitBtn.innerText = "Finish Quiz";
+  submitBtn.innerText = "Submit Quiz";
   submitBtn.id = "submit";
-  submitBtn.addEventListener("click", submitQuiz);
   document.getElementById("quiz").appendChild(submitBtn);
 
-  // Remake the start button to a finish quiz button
+  // remove button
   document.getElementById("start").remove();
 }
 
 function startGame(e) {
+  if (game.time != 3) {
+    game.time = 3;
+  }
   // first create the quiz
   createQuiz();
 
