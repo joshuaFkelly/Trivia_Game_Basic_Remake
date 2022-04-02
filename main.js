@@ -51,7 +51,7 @@ const triviaQuestions = [
     },
 ];
 const main = document.getElementById("main");
-const maxTime = 60;
+const maxTime = 100000000;
 
 let correctScore = 0;
 let incorrectScore = 0;
@@ -65,11 +65,11 @@ const displayQuiz = () => {
     document.getElementById("intro").remove();
     main.innerHTML = `
 <form id="form">
-<h2>Timer: <span id= "timer">${maxTime}</span> seconds remaining</h2>
+<h2 id= "timer">${maxTime}</h2>
   <section id= "quiz">
   </section>
-  <button id= "submit">Submit</button>
-</form>    
+  <button id= "submit">FINISH</button>
+  </form>    
 `
 
     document.getElementById("submit").addEventListener("click", evalScore)
@@ -77,8 +77,6 @@ const displayQuiz = () => {
 }
 
 const displayQuestions = () => {
-    const questionsElem = createElem("div")
-    questionsElem.id = "questionsElem";
     // Loop through array of all my questions and
     triviaQuestions.map((q, id) => {
         // destructuring really comes in handy lol
@@ -87,9 +85,9 @@ const displayQuestions = () => {
         console.log(id, question);
         console.log(a, b, c, d, correctAnswer);
         // Create a new question object for each one
-        questionsElem.innerHTML += `
+        document.getElementById("quiz").innerHTML += `
 
-                    <fieldset id="question${id}">
+                    <fieldset id="question${id}" class="question">
                           <legend> <h3>${question}</h3> </legend>
                         <ul>
                             <li>
@@ -116,7 +114,6 @@ const displayQuestions = () => {
     
         `;
     });
-    document.getElementById("quiz").appendChild(questionsElem)
 }
 
 const startGame = () => {
@@ -183,11 +180,13 @@ const evalScore = (e) => {
 const displayIntro = () => {
     document.getElementById("main").innerHTML = `
     <div id="intro">
-    <h1>Trivia Game!</h1>
+    <img src="https://fontmeme.com/permalink/220402/ed63c7cb852e48c81d37554d5e6740f5.png" alt="super-mario-font" border="0">
     <p>You have a limited amount of time to select your answers.</p>
     <p>Select your answer by clicking on the radio button corresponding with your answer.</p>
-    <p>Points are added up after the quiz is over!</p>
-    <button id="start">Start</button>
+    <p>Answer carefully!! Points are added up once you submit your answers!</p>
+    <a id="start">
+    <img src="https://fontmeme.com/permalink/220402/0345f05ded5b9ff1769235d38b5b5404.png" alt="super-mario-font" border="0">
+    </a>
   </div>
     `
     document.getElementById("start").addEventListener("click", startGame);
@@ -203,10 +202,10 @@ const displayResults = () => {
     const results = createElem("div")
     results.id = "results";
     results.innerHTML = `
-      <h1> GAME OVER </h1>
-      <h3> Correct Answers: <span id= "correct">${correctScore}</span> </h3>
-      <h3> Incorrect Answers: <span id= "incorrect">${incorrectScore}</span> </h3>
-      <button id= "quit"> Quit </button>
+    <img src="https://fontmeme.com/permalink/220402/885495672c1da9e1e9fde1900554b36c.png" alt="super-mario-font" border="0">
+    <h3> Correct Answers: <span id= "correct">${correctScore}</span> </h3>
+    <h3> Incorrect Answers: <span id= "incorrect">${incorrectScore}</span> </h3>
+    <button id= "quit"> Quit </button> 
     `;
     document.getElementById("form").remove();
     main.appendChild(results);
