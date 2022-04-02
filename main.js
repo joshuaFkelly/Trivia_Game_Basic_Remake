@@ -125,9 +125,9 @@ const startGame = () => {
     startTimer();
 }
 
-const incrementCorrectScore = correctScore => correctScore++;
+const incrementCorrectScore = () => correctScore++;
 
-const incrementIncorrectScore = incorrectScore => incorrectScore++;
+const incrementIncorrectScore = () => incorrectScore++;
 
 const startTimer = () => {
     if (currentTime != maxTime) {
@@ -166,9 +166,15 @@ const gameOver = () => {
 const evalScore = (e) => {
     e.preventDefault();
     document.querySelectorAll(".answer").forEach(ans => {
-        if (ans.checked) {
-            console.log(ans.value)
-            console.log(ans.id)
+
+        if (ans.checked && ans.value === ans.id) {
+            incrementCorrectScore()
+            console.log("corret")
+        }
+        if (ans.checked && ans.value != ans.id) {
+            incrementIncorrectScore()
+            console.log("incorrect")
+
         }
     })
     gameOver()
