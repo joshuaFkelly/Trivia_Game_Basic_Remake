@@ -1,57 +1,7 @@
-const triviaQuestions = [
-    {
-        question: "Where does Super Mario World take place?",
-        answers: {
-            a: "The Light Forest",
-            b: "Dinosaur Land",
-            c: "Mario Galaxy",
-            d: "New York",
-            correctAnswer: "Dinosaur Land",
-        },
-    },
-    {
-        question: "Who kidnaps Princess Daisy?",
-        answers: {
-            a: "Tatanga",
-            b: "King Boo",
-            c: "Wario",
-            d: "Count Bleck",
-            correctAnswer: "Tatanga",
-        },
-    },
-    {
-        question: "Who kidnaps Princess Peach?",
-        answers: {
-            a: "Dimentio",
-            b: "Bowser Jr",
-            c: "Waluigi",
-            d: "Bowser",
-            correctAnswer: "Bowser",
-        },
-    },
-    {
-        question: "Who is on the castle roof in Super Mario 64?",
-        answers: {
-            a: "King Toadstool",
-            b: "Princess Peach",
-            c: "Yoshi",
-            d: "Mario",
-            correctAnswer: "Yoshi",
-        },
-    },
-    {
-        question: "Who guards the Fortress in Super Mario 64?",
-        answers: {
-            a: "Boom Boom",
-            b: "Chain Chomp",
-            c: "Lava Queen",
-            d: "Donkey Kong",
-            correctAnswer: "Boom Boom",
-        },
-    },
-];
+import triviaQuestions from "./TriviaData.js";
+
 const main = document.getElementById("main");
-const maxTime = 15;
+const maxTime = 99999999;
 let correctScore = 0;
 let incorrectScore = 0;
 let currentTime;
@@ -64,28 +14,36 @@ const displayQuiz = () => {
     document.getElementById("intro").remove();
 
     main.innerHTML = `
-<form id="form">
-<h2 id= "timer">${maxTime}</h2>
-  <section id= "quiz">
-  </section>
-  <a id= "submit">
-  <img src="https://fontmeme.com/permalink/220403/f0eb2201d132645799c6aec017d55401.png" alt="super-mario-font" border="0">
-  </a>
-  </form>    
+    <form id="form">
+        <h2 id= "timer">${maxTime}</h2>
+            <section id= "quiz">
+            </section>
+            <a id= "submit">
+                <img src="https://fontmeme.com/permalink/220403/f0eb2201d132645799c6aec017d55401.png" alt="super-mario-font" border="0">
+            </a>
+    </form>    
 `
     document.getElementById("submit").addEventListener("click", evalScore)
 }
 
 const displayQuestions = () => {
+
     // Loop through array of all my questions and
     triviaQuestions.map((q, id) => {
-        // destructuring really comes in handy lol
-        const { question, answers } = q;
-        const { a, b, c, d, correctAnswer } = answers;
+        const {
+            question,
+            answers
+        } = q;
+        const {
+            a,
+            b,
+            c,
+            d,
+            correctAnswer
+        } = answers;
 
         // Create a new question object for each one
         document.getElementById("quiz").innerHTML += `
-
                     <fieldset id="question${id}" class="question">
                           <legend> <h3>${question}</h3> </legend>
                         <ul>
@@ -109,8 +67,7 @@ const displayQuestions = () => {
                                 <label for="${d}">${d}</label>                      
                             </li>
                         </ul>
-                    </fieldset>   
-    
+                    </fieldset>    
         `;
     });
 }
@@ -133,11 +90,13 @@ const startTimer = () => {
     intervalID = setInterval(() => {
         currentTime--;
         document.getElementById("timer").innerText = currentTime;
+        if (currentTime === 10) {
+            document.getElementById("timer").setAttribute("class", "warn")
+        }
     }, 1000);
 
     timeoutID = setTimeout(() => {
         gameOver()
-        console.log("Time up, display results");
     }, 1000 * maxTime);
 }
 
@@ -175,14 +134,14 @@ const evalScore = (e) => {
 const displayIntro = () => {
     document.getElementById("main").innerHTML = `
     <div id="intro">
-    <img src="https://fontmeme.com/permalink/220402/ed63c7cb852e48c81d37554d5e6740f5.png" alt="super-mario-font" border="0">
-    <p>You have a limited amount of time to select your answers.</p>
-    <p>Select your answer by clicking on the radio button corresponding with your answer.</p>
-    <p>Answer carefully!! Points are added up once you submit your answers!</p>
-    <a id="start">
-    <img src="https://fontmeme.com/permalink/220402/0345f05ded5b9ff1769235d38b5b5404.png" alt="super-mario-font" border="0">
-    </a>
-  </div>
+        <img src="https://fontmeme.com/permalink/220402/ed63c7cb852e48c81d37554d5e6740f5.png" alt="super-mario-font" border="0">
+        <p>You have a limited amount of time to select your answers.</p>
+        <p>Select your answer by clicking on the radio button corresponding with your answer.</p>
+        <p>Answer carefully!! Points are added up once you submit your answers!</p>
+        <a id="start">
+            <img src="https://fontmeme.com/permalink/220402/0345f05ded5b9ff1769235d38b5b5404.png" alt="super-mario-font" border="0">
+        </a>
+    </div>
     `
     document.getElementById("start").addEventListener("click", startGame);
 }
