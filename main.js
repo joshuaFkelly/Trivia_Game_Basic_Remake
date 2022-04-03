@@ -52,7 +52,6 @@ const triviaQuestions = [
 ];
 const main = document.getElementById("main");
 const maxTime = 15;
-
 let correctScore = 0;
 let incorrectScore = 0;
 let currentTime;
@@ -74,9 +73,7 @@ const displayQuiz = () => {
   </a>
   </form>    
 `
-
     document.getElementById("submit").addEventListener("click", evalScore)
-
 }
 
 const displayQuestions = () => {
@@ -85,8 +82,7 @@ const displayQuestions = () => {
         // destructuring really comes in handy lol
         const { question, answers } = q;
         const { a, b, c, d, correctAnswer } = answers;
-        console.log(id, question);
-        console.log(a, b, c, d, correctAnswer);
+
         // Create a new question object for each one
         document.getElementById("quiz").innerHTML += `
 
@@ -116,21 +112,6 @@ const displayQuestions = () => {
                     </fieldset>   
     
         `;
-        // document.querySelectorAll("label").forEach(label => {
-        //     console.dir(label)
-        //     label.addEventListener("click", () => {
-        //         document.querySelectorAll(".answer").forEach((ans) => {
-        //             if (ans.checked) {
-        //                 label.className = "selected"
-        //             }
-        //             if (!ans.checked) {
-        //                 label.style = "not-selected"
-        //             }
-        //         })
-
-        //     })
-
-        // })
     });
 }
 
@@ -152,11 +133,6 @@ const startTimer = () => {
     intervalID = setInterval(() => {
         currentTime--;
         document.getElementById("timer").innerText = currentTime;
-        if (currentTime === 10) {
-            // document.getElementById("timer").className = "warn"
-            document.getElementById("timer").setAttribute("class", "warn")
-            document.getElementById("timer").removeAttribute("warn")
-        }
     }, 1000);
 
     timeoutID = setTimeout(() => {
@@ -166,7 +142,6 @@ const startTimer = () => {
 }
 
 const clearTimer = () => {
-    console.log("Timer cleared!");
     clearInterval(intervalID);
     clearTimeout(timeoutID);
 }
@@ -189,12 +164,9 @@ const evalScore = (e) => {
 
         if (ans.checked && ans.value === ans.id) {
             incrementCorrectScore()
-            console.log("corret")
         }
         if (ans.checked && ans.value != ans.id) {
             incrementIncorrectScore()
-            console.log("incorrect")
-
         }
     })
     gameOver()
