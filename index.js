@@ -1,60 +1,6 @@
-// const triviaQuestions = [
-//     {
-//         id: 1,
-//         question: "Where does Super Mario World take place?",
-//         answers: {
-//             a: "The Light Forest",
-//             b: "Dinosaur Land",
-//             c: "Grandmaster Galaxy",
-//             d: "New York",
-//             correctAnswer: "Dinosaur Land",
-//         },
-//     },
-//     {
-//         id: 2,
-//         question: "Who kidnaps Princess Daisy?",
-//         answers: {
-//             a: "Tatanga",
-//             b: "Bowser",
-//             c: "Wario",
-//             d: "Yoshi",
-//             correctAnswer: "Tatanga",
-//         },
-//     },
-//     {
-//         id: 3,
-//         question: "Who kidnaps Princess Peach?",
-//         answers: {
-//             a: "Tatanga",
-//             b: "Bowser Jr",
-//             c: "Waluigi",
-//             d: "Bowser",
-//             correctAnswer: "Bowser",
-//         },
-//     },
-//     {
-//         id: 4,
-//         question: "Who is on the castle roof in Super Mario 64?",
-//         answers: {
-//             a: "Donkey Kong",
-//             b: "Princess Peach",
-//             c: "Yoshi",
-//             d: "Mario",
-//             correctAnswer: "Yoshi",
-//         },
-//     },
-//     {
-//         id: 5,
-//         question: "Who guards the Fortress in Super Mario 64?",
-//         answers: {
-//             a: "Boom Boom",
-//             b: "Chain Chomp",
-//             c: "Lava Queen",
-//             d: "2 Toads",
-//             correctAnswer: "Boom Boom",
-//         },
-//     },
-// ];
+// import triviaQuestions from "./TriviaData.js";
+
+//  ---------------------------- OOP Approach... kind of ---------------------------------
 
 // class GameOver {
 //     constructor() {
