@@ -4,7 +4,7 @@ const triviaQuestions = [
         answers: {
             a: "The Light Forest",
             b: "Dinosaur Land",
-            c: "Grandmaster Galaxy",
+            c: "Mario Galaxy",
             d: "New York",
             correctAnswer: "Dinosaur Land",
         },
@@ -13,16 +13,16 @@ const triviaQuestions = [
         question: "Who kidnaps Princess Daisy?",
         answers: {
             a: "Tatanga",
-            b: "Bowser",
+            b: "King Boo",
             c: "Wario",
-            d: "Yoshi",
+            d: "Count Bleck",
             correctAnswer: "Tatanga",
         },
     },
     {
         question: "Who kidnaps Princess Peach?",
         answers: {
-            a: "Tatanga",
+            a: "Dimentio",
             b: "Bowser Jr",
             c: "Waluigi",
             d: "Bowser",
@@ -32,7 +32,7 @@ const triviaQuestions = [
     {
         question: "Who is on the castle roof in Super Mario 64?",
         answers: {
-            a: "Donkey Kong",
+            a: "King Toadstool",
             b: "Princess Peach",
             c: "Yoshi",
             d: "Mario",
@@ -45,13 +45,13 @@ const triviaQuestions = [
             a: "Boom Boom",
             b: "Chain Chomp",
             c: "Lava Queen",
-            d: "2 Toads",
+            d: "Donkey Kong",
             correctAnswer: "Boom Boom",
         },
     },
 ];
 const main = document.getElementById("main");
-const maxTime = 100000000;
+const maxTime = 15;
 
 let correctScore = 0;
 let incorrectScore = 0;
@@ -116,6 +116,21 @@ const displayQuestions = () => {
                     </fieldset>   
     
         `;
+        // document.querySelectorAll("label").forEach(label => {
+        //     console.dir(label)
+        //     label.addEventListener("click", () => {
+        //         document.querySelectorAll(".answer").forEach((ans) => {
+        //             if (ans.checked) {
+        //                 label.className = "selected"
+        //             }
+        //             if (!ans.checked) {
+        //                 label.style = "not-selected"
+        //             }
+        //         })
+
+        //     })
+
+        // })
     });
 }
 
@@ -137,6 +152,11 @@ const startTimer = () => {
     intervalID = setInterval(() => {
         currentTime--;
         document.getElementById("timer").innerText = currentTime;
+        if (currentTime === 10) {
+            // document.getElementById("timer").className = "warn"
+            document.getElementById("timer").setAttribute("class", "warn")
+            document.getElementById("timer").removeAttribute("warn")
+        }
     }, 1000);
 
     timeoutID = setTimeout(() => {

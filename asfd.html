@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="asfsa.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <fieldset id="question${id}" class="question">
+      <legend><h3>${question}</h3></legend>
+      <ul>
+        <div class="wrapper">
+          <li>
+            <input type="radio" name="select" id="option-1" checked />
+            <input type="radio" name="select" id="option-2" />
+            <label for="option-1" class="option option-1">
+              <!--      <div class="dot"></div> -->
+              <span>Student</span>
+            </label>
+            <label for="option-2" class="option option-2">
+              <!-- <div class="dot"></div> -->
+              <span>Teacher</span>
+            </label>
+          </li>
+        </div>
+
+        <li>
+          <input
+            type="radio"
+            id="${a}"
+            class="answer"
+            name="${id}"
+            value="${correctAnswer}"
+          />
+          <label for="${a}">${a}</label>
+        </li>
+
+        <li>
+          <input
+            type="radio"
+            id="${b}"
+            class="answer"
+            name="${id}"
+            value="${correctAnswer}"
+          />
+          <label for="${b}">${b}</label>
+        </li>
+
+        <li>
+          <input
+            type="radio"
+            id="${c}"
+            class="answer"
+            name="${id}"
+            value="${correctAnswer}"
+          />
+          <label for="${c}">${c}</label>
+        </li>
+
+        <li>
+          <input
+            type="radio"
+            id="${d}"
+            class="answer"
+            name="${id}"
+            value="${correctAnswer}"
+          />
+          <label for="${d}">${d}</label>
+        </li>
+      </ul>
+    </fieldset>
+  </body>
+</html>
