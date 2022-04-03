@@ -8,7 +8,40 @@ let currentTime;
 let intervalID;
 let timeoutID;
 
+const incrementCorrectScore = () => correctScore++;
+
+const incrementIncorrectScore = () => incorrectScore++;
+
 const createElem = type => document.createElement(type);
+
+const startGame = () => {
+    displayQuiz();
+    displayQuestions();
+    startTimer();
+}
+
+const clearTimer = () => {
+    clearInterval(intervalID);
+    clearTimeout(timeoutID);
+}
+
+const resetStats = () => {
+    currentTime = 60;
+    clearTimer()
+    correctScore = 0
+    incorrectScore = 0
+}
+
+const gameOver = () => {
+    clearTimer();
+    displayResults();
+}
+
+const quitGame = () => {
+    document.getElementById("results").remove()
+    resetStats()
+    displayIntro()
+}
 
 const displayQuiz = () => {
     document.getElementById("intro").remove();
@@ -72,16 +105,6 @@ const displayQuestions = () => {
     });
 }
 
-const startGame = () => {
-    displayQuiz();
-    displayQuestions();
-    startTimer();
-}
-
-const incrementCorrectScore = () => correctScore++;
-
-const incrementIncorrectScore = () => incorrectScore++;
-
 const startTimer = () => {
     if (currentTime != maxTime) {
         currentTime = maxTime;
@@ -100,22 +123,6 @@ const startTimer = () => {
     }, 1000 * maxTime);
 }
 
-const clearTimer = () => {
-    clearInterval(intervalID);
-    clearTimeout(timeoutID);
-}
-
-const resetStats = () => {
-    currentTime = 60;
-    clearTimer()
-    correctScore = 0
-    incorrectScore = 0
-}
-
-const gameOver = () => {
-    clearTimer();
-    displayResults();
-}
 
 const evalScore = (e) => {
     e.preventDefault();
@@ -129,27 +136,6 @@ const evalScore = (e) => {
         }
     })
     gameOver()
-}
-
-const displayIntro = () => {
-    document.getElementById("main").innerHTML = `
-    <div id="intro">
-        <img src="https://fontmeme.com/permalink/220402/ed63c7cb852e48c81d37554d5e6740f5.png" alt="super-mario-font" border="0">
-        <p>You have a limited amount of time to select your answers.</p>
-        <p>Select your answer by clicking on the radio button corresponding with your answer.</p>
-        <p>Answer carefully!! Points are added up once you submit your answers!</p>
-        <a id="start">
-            <img src="https://fontmeme.com/permalink/220402/0345f05ded5b9ff1769235d38b5b5404.png" alt="super-mario-font" border="0">
-        </a>
-    </div>
-    `
-    document.getElementById("start").addEventListener("click", startGame);
-}
-
-const quitGame = () => {
-    document.getElementById("results").remove()
-    resetStats()
-    displayIntro()
 }
 
 const displayResults = () => {
@@ -166,5 +152,20 @@ const displayResults = () => {
     document.getElementById("form").remove();
     main.appendChild(results);
     document.getElementById("quit").addEventListener("click", quitGame)
+}
+
+const displayIntro = () => {
+    document.getElementById("main").innerHTML = `
+    <div id="intro">
+        <img src="https://fontmeme.com/permalink/220402/ed63c7cb852e48c81d37554d5e6740f5.png" alt="super-mario-font" border="0">
+        <p>You have a limited amount of time to select your answers.</p>
+        <p>Select your answer by clicking on the radio button corresponding with your answer.</p>
+        <p>Answer carefully!! Points are added up once you submit your answers!</p>
+        <a id="start">
+            <img src="https://fontmeme.com/permalink/220402/0345f05ded5b9ff1769235d38b5b5404.png" alt="super-mario-font" border="0">
+        </a>
+    </div>
+    `
+    document.getElementById("start").addEventListener("click", startGame);
 }
 document.onload = displayIntro()
