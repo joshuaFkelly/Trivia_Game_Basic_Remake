@@ -1,7 +1,7 @@
 import triviaQuestions from "./TriviaData.js";
 
 const main = document.getElementById("main");
-const maxTime = 99999999;
+const maxTime = 15;
 let correctScore = 0;
 let incorrectScore = 0;
 let currentTime;

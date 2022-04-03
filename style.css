@@ -49,10 +49,9 @@ img {
     text-shadow: 10px 10px 10px;
     text-align: center;
     position: sticky;
-    top: 5px;
+    top: 10px;
     font-weight: bolder;
     font-size: 75px;
-    margin-top: 33px;
 }
 
 #quiz {
@@ -153,4 +152,51 @@ input:checked~label {
     100% {
         transform: scale(1);
     }
+}
+
+
+
+/* Media Queries */
+@media (min-width: 768px) {
+    p {
+        text-align: center;
+        font-size: 29.5px;
+    }
+
+    h3 {
+        font-size: 35px;
+        font-weight: bolder;
+    }
+
+    label {
+        font-size: xx-large;
+    }
+
+}
+
+@media (min-width: 1440px) {
+    p {
+        text-align: center;
+        font-size: 40px;
+    }
+
+    #timer {
+        font-size: 100px;
+        text-shadow: 4px 4px 4px;
+    }
+
+    #quiz {
+        max-width: 75%;
+        margin: auto;
+    }
+
+    h3 {
+        font-size: 50px;
+        font-weight: bolder;
+    }
+
+    label {
+        font-size: 40px;
+    }
+
 }
