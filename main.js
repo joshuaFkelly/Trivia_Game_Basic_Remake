@@ -81,22 +81,22 @@ const displayQuestions = () => {
                           <legend> <h3>${question}</h3> </legend>
                         <ul>
                             <li>
-                                <input type="radio" id="${a}" class="answer" name="${id}" value="${correctAnswer}">
+                                <input type="radio" id="${a}" class="answer" name="${id}" value="${correctAnswer}" required>
                                 <label for="${a}">${a}</label>
                             </li>
               
                             <li>
-                                <input type="radio" id="${b}" class="answer" name="${id}" value="${correctAnswer}">
+                                <input type="radio" id="${b}" class="answer" name="${id}" value="${correctAnswer}" required>
                                 <label for="${b}">${b}</label>
                             </li>
               
                             <li>
-                                <input type="radio" id="${c}" class="answer" name="${id}" value="${correctAnswer}">
+                                <input type="radio" id="${c}" class="answer" name="${id}" value="${correctAnswer}" required>
                                 <label for="${c}">${c}</label>
                             </li>
               
                             <li>
-                                <input type="radio" id="${d}" class="answer" name="${id}" value="${correctAnswer}">
+                                <input type="radio" id="${d}" class="answer" name="${id}" value="${correctAnswer}" required>
                                 <label for="${d}">${d}</label>                      
                             </li>
                         </ul>
