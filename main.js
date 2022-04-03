@@ -63,12 +63,15 @@ const createElem = type => document.createElement(type);
 
 const displayQuiz = () => {
     document.getElementById("intro").remove();
+
     main.innerHTML = `
 <form id="form">
 <h2 id= "timer">${maxTime}</h2>
   <section id= "quiz">
   </section>
-  <button id= "submit">FINISH</button>
+  <a id= "submit">
+  <img src="https://fontmeme.com/permalink/220403/f0eb2201d132645799c6aec017d55401.png" alt="super-mario-font" border="0">
+  </a>
   </form>    
 `
 
@@ -205,7 +208,9 @@ const displayResults = () => {
     <img src="https://fontmeme.com/permalink/220402/885495672c1da9e1e9fde1900554b36c.png" alt="super-mario-font" border="0">
     <h3> Correct Answers: <span id= "correct">${correctScore}</span> </h3>
     <h3> Incorrect Answers: <span id= "incorrect">${incorrectScore}</span> </h3>
-    <button id= "quit"> Quit </button> 
+    <a id= "quit"> 
+    <img src="https://fontmeme.com/permalink/220403/c0f049880474c9964f83e025a3b26c15.png" alt="super-mario-font" border="0">
+    </a> 
     `;
     document.getElementById("form").remove();
     main.appendChild(results);
