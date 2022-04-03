@@ -46,7 +46,7 @@ img {
     text-shadow: 10px 10px 10px;
     text-align: center;
     position: sticky;
-    top: 33px;
+    top: 5px;
     font-weight: bolder;
     font-size: 75px;
     margin-top: 33px;
@@ -78,7 +78,7 @@ ul {
 }
 
 li {
-    font-size: large;
+    font-size: x-large;
     padding: 50px;
 }
 
@@ -88,7 +88,7 @@ input[type="radio"] {
 
 input:checked~label {
     background-color: white;
-    padding: 25px;
+    padding: 40px;
     border-radius: 100%;
     transform: scale(1.5);
     transition: all 0.3s ease;
@@ -96,6 +96,8 @@ input:checked~label {
 
 #submit {
     text-align: center;
+    margin-top: 25px;
+    margin-bottom: 5px;
 }
 
 /* GAME OVER */
