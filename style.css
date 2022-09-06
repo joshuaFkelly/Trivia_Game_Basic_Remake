@@ -28,13 +28,9 @@ p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     gap: 75px;
     font-size: large;
-}
-
-#start {
-    text-align: center;
-    min-width: 100%;
 }
 
 /* Quiz Page */
@@ -85,7 +81,7 @@ ul {
 
 li {
     font-size: x-large;
-    margin: 50px;
+    margin: 25px;
 }
 
 input[type="radio"] {
